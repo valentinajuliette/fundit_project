@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}FUND-IT - Causas{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="container-fluid margen">
+    <h1 class="text-center">Causas Sociales</h1>
+
+    <!-- Filtro por ODS -->
+    <form method="get">
+        <div class="row text-center">
+            <div class="col-md-8 text-center">
+                <select name="ods" class="form-select">
+                    <option value="">Selecciona un ODS</option>
+                    {% for ods in ods_list %}
+                        <option value="{{ ods.id }}" {% if request.GET.ods == ods.id|stringformat:"s" %}selected{% endif %}>
+                            {{ ods.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4 text-center">
+                <button type="submit" class="btn btn-dark w-100">Filtrar</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Lista de causas -->
+    <div class="row">
+        {% for causa in causas %}
+        <div class="col-md-3 content-center">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ causa.nombre }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">ONG: {{ causa.ong }}</h6>
+                    <p class="card-text">{{ causa.descripcion }}</p>
+                    <p class="card-text"><strong>Meta:</strong> ${{ causa.monto_meta }}</p>
+                    <p class="card-text"><strong>ODS Relacionados:</strong>
+                        {% for ods in causa.ods_relacionados.all %}
+                            <span class="badge bg-success">{{ ods.nombre }}</span>
+                        {% endfor %}
+                    </p>
+                    <a href="{% url 'register' %}" class="btn btn-dark">Donar</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No hay causas disponibles.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

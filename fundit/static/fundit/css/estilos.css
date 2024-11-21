@@ -1,0 +1,40 @@
+/* ESTE SCRIPT ESTILIZA LA PÁGINA WEB */
+body {
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.margen {
+    margin: 1rem;
+}
+
+.verde {
+    color: #BBCEA8;
+}
+.text-warning {
+    color: #FFD700;
+}
+
+.highlight {
+    background-color: #FFF700;
+    padding: 0.2rem;
+}
+
+.nav-link, .navbar-brand, .btn-warning {
+    font-weight: bold;
+}
+
+.container {
+    max-width: 800px;
+}
+
+.row div {
+    margin: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 8px;
+}
